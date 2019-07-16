@@ -18,6 +18,15 @@ class AdjustableLightEntityRow extends Polymer.Element {
      display: flex;
      align-items: center;
  }
+ .second-line {
+     margin-left: 56px;
+ }
+ .second-line[hidden] {
+     display: none;
+ }
+ .aux-icon {
+     width: 20px;
+ }
  .second-line paper-slider {
      width: 100%;
  }
@@ -41,9 +50,9 @@ class AdjustableLightEntityRow extends Polymer.Element {
     </div>
 </hui-generic-entity-row>
 
-<template is="dom-if" if="[[showBrightness]]" hidden$="[[!isOn]]">
-    <div class="second-line flex">
-        <span>Brightness</span>
+<template is="dom-if" if="[[showBrightness]]">
+    <div class="second-line flex" hidden$="[[!isOn]]">
+        <ha-icon icon="mdi:brightness-6" class="aux-icon"></ha-icon>
         <paper-slider
           min="[[brightnessMin]]"
           max="[[brightnessMax]]"
@@ -56,9 +65,9 @@ class AdjustableLightEntityRow extends Polymer.Element {
         </paper-slider>
     </div>
 </template>
-<template is="dom-if" if="[[showColorTemp]]" hidden$="[[!isOn]]">
-    <div class="second-line flex">
-        <span>Temperature</span>
+<template is="dom-if" if="[[showColorTemp]]">
+    <div class="second-line flex" hidden$="[[!isOn]]">
+        <ha-icon icon="mdi:thermometer-lines" class="aux-icon"></ha-icon>
         <paper-slider
           min="[[tempMin]]"
           max="[[tempMax]]"
@@ -70,7 +79,7 @@ class AdjustableLightEntityRow extends Polymer.Element {
           on-click="stopPropagation">
         </paper-slider>
     </div>
-<template is="dom-if" if="[[showTempButtons]]" hidden$="[[!isOn]]">
+<template is="dom-if" if="[[showTempButtons]]">
     <div class="flex-box">
         <template is="dom-repeat" items="[[tempButtons]]">
             <paper-button on-click="handleButton">{{item.name}}</paper-button>
@@ -80,8 +89,8 @@ class AdjustableLightEntityRow extends Polymer.Element {
 </template>
 
 <template is="dom-if" if="[[showColorSliders]]">
-    <div class="second-line flex">
-        <span>Hue</span>
+    <div class="second-line flex" hidden$="[[!isOn]]">
+        <ha-icon icon="mdi:eyedropper-variant" class="aux-icon"></ha-icon>
         <paper-slider
           min="0"
           max="359"
@@ -93,8 +102,8 @@ class AdjustableLightEntityRow extends Polymer.Element {
           on-click="stopPropagation">
         </paper-slider>
     </div>
-    <div class="second-line flex">
-        <span>Saturation</span>
+    <div class="second-line flex" hidden$="[[!isOn]]">
+        <ha-icon icon="mdi:invert-colors" class="aux-icon"></ha-icon>
         <paper-slider
           min="0"
           max="100"
