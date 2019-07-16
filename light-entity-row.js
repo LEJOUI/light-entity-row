@@ -41,7 +41,7 @@ class AdjustableLightEntityRow extends Polymer.Element {
     </div>
 </hui-generic-entity-row>
 
-<template is="dom-if" if="[[showBrightness]]">
+<template is="dom-if" if="[[showBrightness]]" hidden$="[[!isOn]]">
     <div class="second-line flex">
         <span>Brightness</span>
         <paper-slider
@@ -56,7 +56,7 @@ class AdjustableLightEntityRow extends Polymer.Element {
         </paper-slider>
     </div>
 </template>
-<template is="dom-if" if="[[showColorTemp]]">
+<template is="dom-if" if="[[showColorTemp]]" hidden$="[[!isOn]]">
     <div class="second-line flex">
         <span>Temperature</span>
         <paper-slider
@@ -70,14 +70,14 @@ class AdjustableLightEntityRow extends Polymer.Element {
           on-click="stopPropagation">
         </paper-slider>
     </div>
-<template is="dom-if" if="[[showTempButtons]]">
+<template is="dom-if" if="[[showTempButtons]]" hidden$="[[!isOn]]">
     <div class="flex-box">
         <template is="dom-repeat" items="[[tempButtons]]">
             <paper-button on-click="handleButton">{{item.name}}</paper-button>
         </template>
     </div>
-</template>    
-</template>    
+</template>
+</template>
 
 <template is="dom-if" if="[[showColorSliders]]">
     <div class="second-line flex">
@@ -106,7 +106,7 @@ class AdjustableLightEntityRow extends Polymer.Element {
           on-click="stopPropagation">
         </paper-slider>
     </div>
-</template>    
+</template>
 
 <template is="dom-if" if="[[showColorPicker]]">
     <div class="flex-box">
@@ -170,11 +170,11 @@ class AdjustableLightEntityRow extends Polymer.Element {
     if (!checkServiceRegexp.test(config.entity)) {
       throw new Error(`invalid entity ${config.entity}`)
     }
-    
+
     this._config = config;
     this._config.buttons = config.buttons || []
 
-    
+
   }
 
   set hass(hass) {
@@ -209,15 +209,15 @@ class AdjustableLightEntityRow extends Polymer.Element {
         this.color_saturation = 0;
         this.isOn = false;
       }
-      
+
       if (!this._config.hideBrightness && this.isSupported(SUPPORT_BRIGHTNESS)) {
         this.showBrightness = true
       }
-      
+
       if (!this._config.hideTempButtons && this.isSupported(SUPPORT_COLOR_TEMP)) {
         this.showTempButtons = true
       }
-      
+
       if (!this._config.hideColorTemp && this.isSupported(SUPPORT_COLOR_TEMP)) {
         this.showColorTemp = true
         if (this.stateObj.attributes.min_mireds) {
@@ -243,7 +243,7 @@ class AdjustableLightEntityRow extends Polymer.Element {
           }
         }]
       }
-      
+
       if (this._config.showColorPicker && this.isSupported(SUPPORT_RGB_COLOR)) {
         this.showColorPicker = true
         if (this.stateObj.attributes && this.stateObj.attributes.hs_color && Array.isArray(this.stateObj.attributes.hs_color)) {
@@ -314,7 +314,7 @@ class AdjustableLightEntityRow extends Polymer.Element {
     const res = this.stateObj.attributes.supported_features & feature
     return res != 0
   }
-  
+
   handleButton(evt) {
     this.stopPropagation(evt)
     const button = evt.model.get('item')
