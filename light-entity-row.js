@@ -128,7 +128,7 @@ class AdjustableLightEntityRow extends Polymer.Element {
 </template>
 
 <div class="flex-box">
-    <template is="dom-repeat" items="[[_config.buttons]]">
+    <template is="dom-repeat" items="[[_buttons]]">
         <paper-button on-click="handleButton">{{item.name}}</paper-button>
     </template>
 </div>
@@ -181,7 +181,7 @@ class AdjustableLightEntityRow extends Polymer.Element {
     }
 
     this._config = config;
-    this._config.buttons = config.buttons || []
+    this._buttons = config.buttons || []
 
 
   }
