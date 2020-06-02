@@ -180,8 +180,8 @@ class AdjustableLightEntityRow extends Polymer.Element {
       throw new Error(`invalid entity ${config.entity}`)
     }
 
-    this._config = config;
-    this._buttons = config.buttons || []
+    this._config = JSON.parse(JSON.stringify(config));
+    this._buttons = JSON.parse(JSON.stringify(config.buttons)) || []
 
 
   }
