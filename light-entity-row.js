@@ -180,7 +180,7 @@ class AdjustableLightEntityRow extends Polymer.Element {
     }
 
     this._config = JSON.parse(JSON.stringify(config));
-    this._buttons = config.buttons || []
+    this._config.buttons = config.buttons || []
 
   }
 
