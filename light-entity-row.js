@@ -181,7 +181,7 @@ class AdjustableLightEntityRow extends Polymer.Element {
     }
 
    
-    this._config = {...config, _buttons: config._buttons ? [...config._buttons] : []};
+    this._config = {...config, buttons: config._buttons ? [...config._buttons] : []};
 
 
   }
