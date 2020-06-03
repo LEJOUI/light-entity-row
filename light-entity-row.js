@@ -171,7 +171,6 @@ class AdjustableLightEntityRow extends Polymer.Element {
     param.hs_color = [ev.detail.hs.h, ev.detail.hs.s*100]
     this._hass.callService('light', 'turn_on', param);
   }
-
   setConfig(config)
   {
 
@@ -180,7 +179,6 @@ class AdjustableLightEntityRow extends Polymer.Element {
       throw new Error(`invalid entity ${config.entity}`)
     }
 
-   
     this._config = config;
     this._buttons = config.buttons || []
 
