@@ -32,12 +32,13 @@ class AdjustableLightEntityRow extends Polymer.Element {
  }
  .flex-box {
      display: flex;
-     justify-content: space-between;
+     justify-content: space-evenly;
  }
  paper-button {
      color: var(--primary-color);
      font-weight: 500;
      margin-right: -.57em;
+     cursor: pointer;
  }
 </style>
 <hui-generic-entity-row
